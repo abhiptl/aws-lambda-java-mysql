@@ -2,7 +2,7 @@
 
 This repository shows how to create Lambda function using Java8 runtime and integrate it with MySQL RDS using Hibernate.
 - Create Lambda function using Java8 runtime
-- Integrate Hibernate framework to connect with MySQL RDS instance
+- Integrate Hibernate framework to connect it to MySQL RDS instance
 - Multiple lambda services in single lambda project
 - Package, Deploy and Test lambda
 
@@ -54,13 +54,13 @@ AWS Lambda functions cab be created in multiple platform. AWS lambda supports Ja
 ## Integrate Hibernate framework to connect with MySQL RDS instance
 
 
-Hibernate is standard JPA framework now-a-days to connect Java application to database. `com.abhishek.core.HibernateUtil.getSessionFactory()` creates hibernate session factory using `hibernate.cfg.xml`. 
+Hibernate is standard JPA framework now-a-days to connect Java application to database. `com.abhishek.core.HibernateUtil.getSessionFactory()` creates hibernate session factory using `hibernate.cfg.xml` hibernate configuration. You can take now object-to-relational framework advantage. 
 
 
 
 ## Multiple lambda services in single lambda project
 
-This repository simple architecture(for reference only) that can be used to create multiple Lambda services using single lambda project. If you are developing REST web services and plan to host it using lambda services then you can use this architecture pattern.
+This repository is designed with simple architecture(for reference only) in mind that can be used to create multiple Lambda services using single lambda project. If you are developing REST web services and plan to host it using lambda services then you can use this architecture pattern.
 
 - `com.abhishek.services` : All REST web services will be put in this package. Each service class is dedicated for single REST web services. For example, `com.abhishek.services.employee.SaveEmployeeService` is lambda function to save Employee. 
 
@@ -68,21 +68,22 @@ This repository simple architecture(for reference only) that can be used to crea
 
 ## Package, Deploy and Test lambda
 
-# - Package
+* ### Package
 
-This is maven based project and can be package using following command. Thanks to `maven-shade-plugin` which will package all the necessary libraries and create jar which can be easily uploaded to AWS lambda. 
+This is maven based project and can be package using following command. 
 ```
 mvn clean package
 ```
+Thanks to `maven-shade-plugin` which will package all the depedent libraries and create single artifact jar.
 After successfully running command, it will generate `<artifactId>-<version>.jar` in `target` folder. For example `lambda-1.0.0.jar`.
 
-# - Deploy
+* ### Deploy
 
 `lambda-1.0.0.jar` is final artifact that needs to be uploaded in AWS lambda function using various options provided by AWS lambda as `Function Package`. You can also upload this to s3 bucket and configure AWS lambda to take from that bucket.
 
-# - Test
+* ### Test
 
-AWS lambda provide mechanism to test Lambda function from AWS lambda console itself. Before running it, we have to configure following environment variables which are used in Lambda project in your AWS lambda service. 
+AWS lambda provides mechanism to test Lambda function from AWS lambda console itself. Before running it, we have to configure following environment variables which are used in Lambda project in your AWS lambda service and specify `com.abhishek.services.employee.SaveEmployeeService::handleRequest` handler. 
 
 `RDS_DB_NAME`
 `RDS_HOSTNAME`
