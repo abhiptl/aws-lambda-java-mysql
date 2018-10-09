@@ -68,7 +68,7 @@ This repository simple architecture(for reference only) that can be used to crea
 
 ## Package, Deploy and Test lambda
 
-- Package
+# - Package
 
 This is maven based project and can be package using following command. Thanks to `maven-shade-plugin` which will package all the necessary libraries and create jar which can be easily uploaded to AWS lambda. 
 ```
@@ -76,11 +76,11 @@ mvn clean package
 ```
 After successfully running command, it will generate `<artifactId>-<version>.jar` in `target` folder. For example `lambda-1.0.0.jar`.
 
-- Deploy
+# - Deploy
 
 `lambda-1.0.0.jar` is final artifact that needs to be uploaded in AWS lambda function using various options provided by AWS lambda as `Function Package`. You can also upload this to s3 bucket and configure AWS lambda to take from that bucket.
 
-- Test
+# - Test
 
 AWS lambda provide mechanism to test Lambda function from AWS lambda console itself. Before running it, we have to configure following environment variables which are used in Lambda project in your AWS lambda service. 
 
