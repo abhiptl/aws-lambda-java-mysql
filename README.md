@@ -96,11 +96,24 @@ Create `Employee` table in MySQL database with id, name, designation columns bef
 
 Once all configuration is done, you can create Test event and pass following request body data to run this lambda function.
 
+##### Request JSON
 ```
 {
   "body": "{\"name\": \"Final\", \"designation\": \"Test\"}"
 }
 ```
+
+##### Response JSON
+```
+{
+  "headers": {
+    "custom-header": "Custom Header Value"
+  },
+  "body": "{\"id\":10}",
+  "statusCode": 200
+}
+```
+
 If everything is configured and coded properly, it should run successfully and new record will be created in MySQL database.
 
 ###### NOTE 
